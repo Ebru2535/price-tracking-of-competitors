@@ -19,38 +19,41 @@ public class GetMyInvoicesPage extends BasePage{
     public WebElement essential;
 
 
-    @FindBy(xpath = "//span[@id='country_specific_content_66fdbb6645a88']")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[1]")
     public WebElement essentialPrice;
 
     @FindBy(xpath = "(//div[@class='elementor-widget-container']//h4[.='Small'])[1]")
     public WebElement small;
 
 
-    @FindBy(xpath = "//span[@id='country_specific_content_66fdbb66734b3']")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[2]")
     public WebElement smallPrice;
 
     @FindBy(xpath = "(//div[@class='elementor-widget-container']//h4[.='Standard'])[1]")
     public WebElement standard;
 
 
-    @FindBy(xpath = "//span[@id='country_specific_content_66fdbb66a8ad3']")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[3]")
     public WebElement standardPrice;
 
     @FindBy(xpath = "(//h4[.='Professional'])[1]")
     public WebElement professional;
 
 
-    @FindBy(xpath = "//span[@id='country_specific_content_66fdbb66dd32b']")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[4]")
     public WebElement professionalPrice;
 
     @FindBy(xpath = "(//h4[.='Enterprise'])[1]")
     public WebElement enterprise;
 
 
-    @FindBy(xpath = "//span[@id='country_specific_content_66fdbb67374d2']")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[5]")
     public WebElement enterprisePrice;
 
-    public void extractPricingDetails() {
+    @FindBy(xpath = "(//ul//li//a[.='Preise'])[4]")
+    public WebElement preseMenu;
+
+    public void extractPricingDetails(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
 
@@ -63,6 +66,7 @@ public class GetMyInvoicesPage extends BasePage{
         productElements.put("Enterprise", new WebElement[]{enterprise, enterprisePrice});
 
         Map<String, String> pricingDetails = new HashMap<>();
+        pricingDetails.put("url" , url);
 
         for (Map.Entry<String, WebElement[]> entry : productElements.entrySet()) {
             String productType = entry.getKey();

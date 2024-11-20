@@ -31,7 +31,7 @@ public class SumUpPage extends BasePage{
     public WebElement kassensystenLitePrice;
 
 
-    public void extractPricingDetails() {
+    public void extractPricingDetails(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
 
@@ -39,6 +39,7 @@ public class SumUpPage extends BasePage{
         WebElement[] productPrices = {soloLitePrice, soloPrice, kassensystenLitePrice};
 
         Map<String, String> pricingDetails = new HashMap<>();
+        pricingDetails.put("url" , url);
 
         for (int i = 0; i < productTypes.length; i++) {
             WebElement productTypeElement = productTypes[i];

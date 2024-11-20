@@ -42,7 +42,7 @@ public class ZervantPage extends BasePage{
     public WebElement growthPrice;
 
 
-    public void extractPricingDetailsForSunalr() {
+    public void extractPricingDetailsForSunalr(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
         // Ordered product types and prices
@@ -50,6 +50,7 @@ public class ZervantPage extends BasePage{
         WebElement[] productPrices = {starterPrice, proPrice, growthPrice};
 
         Map<String, String> pricingDetails = new HashMap<>();
+        pricingDetails.put("url" , url);
 
         for (int i = 0; i < productTypes.length; i++) {
             WebElement productTypeElement = productTypes[i];
@@ -61,6 +62,7 @@ public class ZervantPage extends BasePage{
 
             String productName = productTypeElement.getText().trim();
             String productPrice = productPriceElement.getText().trim();
+
 
 
             if (productName.isEmpty() || productPrice.isEmpty()) {

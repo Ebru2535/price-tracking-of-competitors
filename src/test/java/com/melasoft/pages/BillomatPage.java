@@ -37,7 +37,8 @@ public class BillomatPage extends BasePage{
 
 
 
-    public void extractPricingDetails() {
+    public void extractPricingDetails(String url) {
+
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
         // Ordered product types and corresponding prices
@@ -45,6 +46,7 @@ public class BillomatPage extends BasePage{
         WebElement[] productPrices = {professionalPrice, businessPrice, enterprisePrice};
 
         Map<String, String> pricingDetails = new HashMap<>();
+        pricingDetails.put("url" , url);
 
         for (int i = 0; i < productTypes.length; i++) {
             WebElement productTypeElement = productTypes[i];

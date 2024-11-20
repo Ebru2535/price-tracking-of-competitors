@@ -40,12 +40,13 @@ public class FastbillPage extends BasePage{
     public WebElement premiumPrice;
 
 
-    public void extractPricingDetails() {
+    public void extractPricingDetails(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
 
         String[] productTypes = {"Solo", "Plus", "Pro", "Premium"};
         Map<String, String> pricingDetails = new HashMap<>();
+        pricingDetails.put("url" , url);
 
         Map<String, WebElement[]> productElements = new HashMap<>();
         productElements.put("Solo", new WebElement[]{solo, soloPrice});

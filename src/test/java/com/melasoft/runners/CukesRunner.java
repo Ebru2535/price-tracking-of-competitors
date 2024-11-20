@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/melasoft/step_definition",
         dryRun = false,
-        tags = "@melasoft",
+        tags = "@all",
         publish = true //generating a report with public link
 )
 public class CukesRunner {

@@ -10,9 +10,10 @@ import org.openqa.selenium.JavascriptExecutor;
 
 
 public class PricingStepDefinitions {
-
+String urlOfWebSite;
     @Given("^I navigate to \"([^\"]*)\"$")
     public void i_navigate_to(String url) {
+        urlOfWebSite=url;
         Driver.getDriver().get(url);
     }
 
@@ -22,7 +23,7 @@ public class PricingStepDefinitions {
         EasybillPage easybillPage = new EasybillPage();
         BrowserUtils.sleep(5);
         easybillPage.getAcceptAllButton().click();
-        easybillPage.extractPricingDetails();
+        easybillPage.extractPricingDetails(urlOfWebSite);
     }
 
     @When("^I extract zervant pricing details$")
@@ -30,7 +31,7 @@ public class PricingStepDefinitions {
         ZervantPage zervantPage=new ZervantPage();
         BrowserUtils.sleep(5);
         zervantPage.acceptAllButton.click();
-        zervantPage.extractPricingDetailsForSunalr();
+        zervantPage.extractPricingDetailsForSunalr(urlOfWebSite);
 
     }
 
@@ -39,7 +40,7 @@ public class PricingStepDefinitions {
         BuhlPage buhlPage = new BuhlPage();
         BrowserUtils.sleep(5);
         buhlPage.getAcceptAllButton().click();
-        buhlPage.extractPricingDetails();
+        buhlPage.extractPricingDetails(urlOfWebSite);
 
     }
 
@@ -49,14 +50,14 @@ public class PricingStepDefinitions {
         BillomatPage billomatPage = new BillomatPage();
         BrowserUtils.sleep(2);
         billomatPage.shadowHost.click();
-        billomatPage.extractPricingDetails();
+        billomatPage.extractPricingDetails(urlOfWebSite);
     }
 
     @When("^I extract sevdesk pricing details$")
     public void i_extract_sevdesk_pricing_details() {
         SevdeskPage sevdeskPage =new SevdeskPage();
         BrowserUtils.sleep(2);
-        sevdeskPage.extractPricingDetails();
+        sevdeskPage.extractPricingDetails(urlOfWebSite);
 
     }
 
@@ -64,7 +65,7 @@ public class PricingStepDefinitions {
     public void i_extract_fastbill_pricing_details() {
         FastbillPage fastbillPage=new FastbillPage();
         fastbillPage.alleCookiesZulassenButton.click();
-        fastbillPage.extractPricingDetails();
+        fastbillPage.extractPricingDetails(urlOfWebSite);
 
     }
 
@@ -72,7 +73,7 @@ public class PricingStepDefinitions {
     public void i_extract_sumup_pricing_details() {
         SumUpPage sumUpPage = new SumUpPage();
         BrowserUtils.sleep(2);
-        sumUpPage.extractPricingDetails();
+        sumUpPage.extractPricingDetails(urlOfWebSite);
 
     }
 
@@ -81,7 +82,7 @@ public class PricingStepDefinitions {
         LexofficePage lexofficePage=new LexofficePage();
         BrowserUtils.sleep(5);
         lexofficePage.getAcceptAllButton().click();
-        lexofficePage.extractPricingDetails();
+        lexofficePage.extractPricingDetails(urlOfWebSite);
 
     }
 
@@ -89,7 +90,9 @@ public class PricingStepDefinitions {
     public void i_extract_getmyinvoices_pricing_details() {
    GetMyInvoicesPage getMyInvoicesPage =new GetMyInvoicesPage();
    getMyInvoicesPage.acceptAllCookies.click();
-   getMyInvoicesPage.extractPricingDetails();
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", getMyInvoicesPage.preseMenu);
+   getMyInvoicesPage.extractPricingDetails(urlOfWebSite);
     }
 
     @Then("^I should see the pricing details displayed correctly$")
