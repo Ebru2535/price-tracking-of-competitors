@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class CsvUtil {
-
+/*
     public static void createCsvFile(Map<String, String> pricingDetails) {
 
 
@@ -17,7 +17,7 @@ public class CsvUtil {
         writer.write(" ------------" + startDate + "--------------");
         writer.newLine();
             if (new java.io.File(path).length() == 0) {
-                writer.write("Product Type,Price,Date");
+                writer.write("Product Type,Price");
                 writer.newLine();
             }
 
@@ -41,6 +41,58 @@ public class CsvUtil {
 
 
     }
+
+*/
+
+
+    public static void createCsvFile(Map<String, String> pricingDetails) {
+        LocalDate startDate = LocalDate.now();
+        String path = Paths.get(System.getProperty("user.dir"), "PriceDetails.csv").toString();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) { // Set append to true
+
+            writer.write(" ------------" + startDate + "--------------");
+            writer.newLine();
+
+
+            if (new java.io.File(path).length() == 0) {
+                writer.write("Product Type,Price,URL");
+                writer.newLine();
+            }
+            String url = pricingDetails.get("url");
+
+            for (Map.Entry<String, String> entry : pricingDetails.entrySet()) {
+                String productType = entry.getKey();
+                if ("url".equals(productType)) {
+                    continue;
+                }
+
+                String[] array = entry.getValue().split("\n");
+                String price = array[0];
+
+
+                price = price.replace(",", ".");
+
+
+                writer.write(String.join(",", productType, price, url));
+                writer.newLine();
+            }
+
+
+            writer.write("============================================================");
+            writer.newLine();
+
+            System.out.println("Data appended to CSV file at: " + path);
+        } catch (IOException e) {
+            System.err.println("IO error: " + e.getMessage());
+        }
+    }
+
+
+
+
+
+
 
 
 }

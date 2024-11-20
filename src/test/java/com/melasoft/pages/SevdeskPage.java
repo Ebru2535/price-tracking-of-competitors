@@ -32,12 +32,12 @@ public class SevdeskPage extends BasePage{
     @FindBy(xpath = "(//h3[.='Buchhaltung Pro'])[3]//..//..//div[@class='c-new-price-text']")
     public WebElement buchhaltungProPrice;
 
-    public void extractPricingDetails() {
+    public void extractPricingDetails(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
         String[] productTypes = {"Rechnung", "Buchhaltung", "Buchhaltung Pro"};
         Map<String, String> pricingDetails = new HashMap<>();
-
+        pricingDetails.put("url" , url);
 
         Map<String, WebElement[]> productElements = new HashMap<>();
         productElements.put("Rechnung", new WebElement[]{rechnungProductType, rechnungPrice});

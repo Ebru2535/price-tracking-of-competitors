@@ -91,12 +91,13 @@ public class EasybillPage extends BasePage{
 
 */
 
-    public void extractPricingDetails() {
+    public void extractPricingDetails(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
         // Ordered product types
         String[] productTypes = {"BASIC", "PLUS", "BUSINESS"};
         Map<String, String> pricingDetails = new HashMap<>();
+        pricingDetails.put("url" , url);
 
         for (String productType : productTypes) {
             WebElement[] elements = productElements.get(productType);

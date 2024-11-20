@@ -47,7 +47,7 @@ public class LexofficePage extends BasePage{
     @FindBy(xpath = "(//li[@class='offer offer-xl boxPadding boxShadow borderRadius']//h2//..//p)[3]")
     public WebElement xlPrice;
 
-    public void extractPricingDetails() {
+    public void extractPricingDetails(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
         // Product types and their corresponding WebElements
@@ -58,6 +58,7 @@ public class LexofficePage extends BasePage{
         productElements.put("Buchhaltung XL", new WebElement[]{xl, xlPrice});
 
         Map<String, String> pricingDetails = new HashMap<>();
+        pricingDetails.put("url" , url);
 
         for (Map.Entry<String, WebElement[]> entry : productElements.entrySet()) {
             String productType = entry.getKey();
