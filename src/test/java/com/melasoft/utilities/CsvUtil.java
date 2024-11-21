@@ -3,6 +3,7 @@ package com.melasoft.utilities;
 import java.io.*;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 public class CsvUtil {
@@ -47,9 +48,10 @@ public class CsvUtil {
 
     public static void createCsvFile(Map<String, String> pricingDetails) {
         LocalDate startDate = LocalDate.now();
-        String path = Paths.get(System.getProperty("user.dir"), "PriceDetails.csv").toString();
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) { // Set append to true
+        String path = Paths.get(System.getProperty("user.dir"), "target/PriceDetails.csv").toString();
+        File file = new File(path);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, true))) {
+            // Set append to true
 
             writer.write(" ------------" + startDate + "--------------");
             writer.newLine();
@@ -87,9 +89,6 @@ public class CsvUtil {
             System.err.println("IO error: " + e.getMessage());
         }
     }
-
-
-
 
 
 
