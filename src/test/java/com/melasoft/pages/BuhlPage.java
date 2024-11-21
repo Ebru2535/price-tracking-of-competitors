@@ -3,6 +3,7 @@ package com.melasoft.pages;
 
 import com.melasoft.utilities.Driver;
 import com.melasoft.utilities.CsvUtil;
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -74,23 +75,25 @@ public class BuhlPage extends BasePage {
 
         for (int i = 0; i < productHeaders.length; i++) {
             try {
-                WebElement headerElement = productHeaders[i];
+          //      WebElement headerElement = productHeaders[i];
                 WebElement productTypeElement = productTypes[i];
                 WebElement productPriceElement = productPrices[i];
 
-                if (headerElement == null || productTypeElement == null || productPriceElement == null) {
-                    System.out.println("Header, product type, or price element is missing at index: " + i);
-                    continue;
-                }
+             //   if (headerElement == null || productTypeElement == null || productPriceElement == null) {
+            //        System.out.println("Header, product type, or price element is missing at index: " + i);
+             //       continue;
+            //    }
 
-                js.executeScript("arguments[0].scrollIntoView(true);", headerElement);
 
-                try {
-                    wait.until(ExpectedConditions.elementToBeClickable(headerElement)).click();
-                } catch (ElementClickInterceptedException e) {
-                    System.out.println("Element click intercepted. Trying JS click...");
-                    js.executeScript("arguments[0].click();", headerElement);
-                }
+
+
+           //    js.executeScript("arguments[0].scrollIntoView(true);", headerElement);
+            //    try {
+            //        wait.until(ExpectedConditions.elementToBeClickable(headerElement)).click();
+            //    } catch (ElementClickInterceptedException e) {
+            //        System.out.println("Element click intercepted. Trying JS click...");
+             //       js.executeScript("arguments[0].click();", headerElement);
+             //   }
 
                 wait.until(ExpectedConditions.visibilityOf(productTypeElement));
 
