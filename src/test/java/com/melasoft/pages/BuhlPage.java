@@ -61,7 +61,7 @@ public class BuhlPage extends BasePage {
     @FindBy(xpath = "//ul//li[.='L']")
     public WebElement lHeader;
 
-
+/*
     public void extractPricingDetails(String url) {
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
@@ -78,27 +78,14 @@ public class BuhlPage extends BasePage {
           //      WebElement headerElement = productHeaders[i];
                 WebElement productTypeElement = productTypes[i];
                 WebElement productPriceElement = productPrices[i];
-
-             //   if (headerElement == null || productTypeElement == null || productPriceElement == null) {
-            //        System.out.println("Header, product type, or price element is missing at index: " + i);
-             //       continue;
-            //    }
-
-
-
-
-           //    js.executeScript("arguments[0].scrollIntoView(true);", headerElement);
-            //    try {
-            //        wait.until(ExpectedConditions.elementToBeClickable(headerElement)).click();
-            //    } catch (ElementClickInterceptedException e) {
-            //        System.out.println("Element click intercepted. Trying JS click...");
-             //       js.executeScript("arguments[0].click();", headerElement);
-             //   }
-
+                if (i == productHeaders.length - 1) {
+                    System.out.println("Processing last element at index: " + i);
+                    // Son elemana özel işlem (isteğe bağlı)
+                }
                 wait.until(ExpectedConditions.visibilityOf(productTypeElement));
-
                 String productName = productTypeElement.getText().trim();
                 String productPrice = productPriceElement.getText().trim();
+               // String productPrice = productPriceElement.getAttribute("textContent").trim();
 
                 if (productName.isEmpty() || productPrice.isEmpty()) {
                     System.out.println("Product or price information not found for header at index: " + i);
@@ -114,6 +101,60 @@ public class BuhlPage extends BasePage {
 
         CsvUtil.createCsvFile(pricingDetails);
     }
+
+*/
+public void extractPricingDetails(String url) {
+    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+
+    WebElement[] productHeaders = {freeXsHeader, smHeader, lHeader};
+    WebElement[] productTypes = {xsProductType, sProductType, mProductType, lProductType};
+    WebElement[] productPrices = {xsPrice, sPrice, mPrice, lPrice};
+
+    Map<String, String> pricingDetails = new HashMap<>();
+    pricingDetails.put("url", url);
+
+    // Dizilerin en küçük uzunluğuna göre işlem yapıyoruz
+    int length = Math.min(Math.min(productHeaders.length, productTypes.length), productPrices.length);
+
+    for (int i = 0; i < length; i++) {
+        try {
+            WebElement productTypeElement = productTypes[i];
+            WebElement productPriceElement = productPrices[i];
+
+            // Son eleman için özel işlem
+            if (i == length - 1) {
+                System.out.println("Processing last element at index: " + i);
+            }
+
+            // Web elemanını görünür yapmak için scrollIntoView kullanıyoruz
+            js.executeScript("arguments[0].scrollIntoView(true);", productPriceElement);
+            wait.until(ExpectedConditions.visibilityOf(productTypeElement));
+
+            // Fiyatı ve ismi alırken getAttribute("textContent") kullanıyoruz
+            String productName = productTypeElement.getText().trim();
+            String productPrice = productPriceElement.getAttribute("textContent").trim();  // textContent kullanımı
+
+            // Debugging: Her fiyatı kontrol et
+            System.out.println("Product Type: " + productName + " | Product Price: " + productPrice);
+
+            if (productName.isEmpty() || productPrice.isEmpty()) {
+                System.out.println("Product or price information not found for header at index: " + i);
+            } else {
+                System.out.println(productName + " PRICE: " + productPrice + "£");
+                pricingDetails.put(productName, productPrice);
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred while processing index: " + i);
+            e.printStackTrace();
+        }
+    }
+
+    // CSV dosyasını oluşturuyoruz
+    CsvUtil.createCsvFile(pricingDetails);
+}
+
+
 
 
 
