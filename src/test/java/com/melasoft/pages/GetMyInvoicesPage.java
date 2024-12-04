@@ -40,14 +40,14 @@ public class GetMyInvoicesPage extends BasePage{
     public WebElement professional;
 
 
-    @FindBy(xpath = "(//span[@data-field-name='preis_black_week'])[1]")
+    @FindBy(xpath = "(//span[@data-field-name='preis'])[4]")
     public WebElement professionalPrice;
 
     @FindBy(xpath = "(//h4[.='Enterprise'])[1]")
     public WebElement enterprise;
 
 
-    @FindBy(xpath = "(//span[@id='country_specific_content_6747018c19013'])[1]")
+    @FindBy(xpath = "(//span[@data-field-name='preis'])[5]")
     public WebElement enterprisePrice;
 
     @FindBy(xpath = "(//ul//li//a[.='Preise'])[4]")
