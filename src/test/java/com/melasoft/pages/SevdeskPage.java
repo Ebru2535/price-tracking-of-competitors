@@ -12,16 +12,16 @@ import java.util.Map;
 public class SevdeskPage extends BasePage{
 
 
-    @FindBy(xpath = "//div[@id='w-node-_8d3b1c28-f4e0-a27f-33f7-3744da6205dd-da620445']//h3[.='Rechnung']")
+    @FindBy(xpath = "(//div[@pricing-plan='RECHNUNG-24_04']//h3[.='Rechnung'])[3]")
     public WebElement rechnungProductType;
 
-    @FindBy(xpath = "(//div[.='Perfekt für alle, die Rechnungen schreiben – schnell und einfach.\u2028'])[3]//..//..//..//div[@class='c-new-price-text']")
+    @FindBy(xpath = "(//div[.='Perfekt für alle, die Rechnungen schreiben – schnell und einfach.\u2028'])[3]//..//..//..//div[@class='c-new-price']")
     public WebElement rechnungPrice;
 
-    @FindBy(xpath ="(//div[.='Unsere Empfehlung']//..//h3[.='Buchhaltung'])[3]\n")
+    @FindBy(xpath ="(//div[@class='c-flow cc-pricing_table_category']//h3[.='Buchhaltung'])[3]")
     public WebElement buchhaltungProductType;
 
-    @FindBy(xpath = "(//div[.='Unsere Empfehlung']//..//h3[.='Buchhaltung'])[3]//..//..//div[@class='c-new-price-text']")
+    @FindBy(xpath = "(//div[.='Unsere Empfehlung']//..//h3[.='Buchhaltung'])[3]//..//..//div[@class='c-new-price-text-freemium']")
     public WebElement buchhaltungPrice;
 
 
@@ -29,7 +29,7 @@ public class SevdeskPage extends BasePage{
     public WebElement buchhaltungProProductType;
 
 
-    @FindBy(xpath = "(//h3[.='Buchhaltung Pro'])[3]//..//..//div[@class='c-new-price-text']")
+    @FindBy(xpath = "(//h3[.='Buchhaltung Pro'])[3]//..//..//div[@class='c-new-price-text-freemium']")
     public WebElement buchhaltungProPrice;
 
     public void extractPricingDetails(String url) {
