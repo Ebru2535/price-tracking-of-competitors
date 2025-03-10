@@ -17,24 +17,24 @@ import java.util.Map;
 
 public class EasybillPage extends BasePage{
 
-    @FindBy(xpath = "//h4[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'basic')]")
+    @FindBy(xpath = "(//h3[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'basic')])[1]")
     public WebElement basicProductType;
 
-    @FindBy(xpath = "(//span[@class='d-inline-block'])[2]")
+    @FindBy(xpath = "(//span[@class='e_price-counter'])[2]")
     public WebElement priceBasic;
 
 
-    @FindBy(xpath = "(//h4[.='PLUS'])[1]")
+    @FindBy(xpath = "(//h3[.='Plus'])[1]")
     public WebElement plusProductType;
 
-    @FindBy(xpath = "(//span[@class='d-inline-block'])[3]")
+    @FindBy(xpath = "(//span[@class='e_price-counter'])[3]")
     public WebElement pricePlus;
 
 
-    @FindBy(xpath = "(//h4[.='BUSINESS'])[1]")
+    @FindBy(xpath = "(//h3[.='Business'])[1]")
     public WebElement businessProductType;
 
-    @FindBy(xpath = "(//span[@class='d-inline-block'])[4]")
+    @FindBy(xpath = "(//span[@class='e_price-counter'])[4]")
     public WebElement priceBusiness;
 
 
