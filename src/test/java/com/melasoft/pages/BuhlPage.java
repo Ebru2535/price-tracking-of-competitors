@@ -3,10 +3,7 @@ package com.melasoft.pages;
 
 import com.melasoft.utilities.Driver;
 import com.melasoft.utilities.CsvUtil;
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -20,15 +17,12 @@ public class BuhlPage extends BasePage {
     @FindBy(id = "usercentrics-root")
     private WebElement shadowHost;
 
-
-    public WebElement getAcceptAllButton() {
-        return (WebElement) ((JavascriptExecutor) Driver.getDriver()).executeScript(
-                "return arguments[0].shadowRoot.querySelector(\"[data-testid='uc-accept-all-button']\");",
-                shadowHost
-        );
-    }
-
-
+public WebElement getAcceptAllButton() {
+    WebElement shadowHost = Driver.getDriver().findElement(By.id("usercentrics-cmp-ui"));
+    SearchContext shadowRoot = (SearchContext) ((JavascriptExecutor) Driver.getDriver())
+            .executeScript("return arguments[0].shadowRoot;", shadowHost);
+    return shadowRoot.findElement(By.cssSelector("[id='accept']"));
+}
 
     @FindBy(xpath = "(//div[@class='plan'])[2]")
     public WebElement xsProductType;
