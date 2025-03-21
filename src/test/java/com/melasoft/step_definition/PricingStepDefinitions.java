@@ -38,7 +38,7 @@ String urlOfWebSite;
     @When("^I extract meinbuero pricing details$")
     public void i_extract_meinbuero_pricing_details() {
         BuhlPage buhlPage = new BuhlPage();
-        BrowserUtils.sleep(5);
+        BrowserUtils.sleep(2);
         buhlPage.getAcceptAllButton().click();
         buhlPage.extractPricingDetails(urlOfWebSite);
 
