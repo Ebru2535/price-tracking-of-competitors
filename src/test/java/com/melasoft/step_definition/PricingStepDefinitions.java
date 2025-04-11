@@ -80,7 +80,7 @@ String urlOfWebSite;
     @When("^I extract lexoffice pricing details$")
     public void i_extract_lexoffice_pricing_details() {
         LexofficePage lexofficePage=new LexofficePage();
-        BrowserUtils.sleep(5);
+        BrowserUtils.sleep(20);
         lexofficePage.getAcceptAllButton().click();
         lexofficePage.extractPricingDetails(urlOfWebSite);
 
