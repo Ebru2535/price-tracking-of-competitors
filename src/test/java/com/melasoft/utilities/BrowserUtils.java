@@ -73,13 +73,16 @@ public class BrowserUtils {
             Assert.fail("Element not found: " + by);
 
         }
+
     }
 
 
 
 
 
-
+    public static void refreshPage() {
+        Driver.getDriver().navigate().refresh();
+    }
 
 
 

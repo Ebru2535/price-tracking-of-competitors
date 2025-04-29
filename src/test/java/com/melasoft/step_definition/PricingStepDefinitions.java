@@ -6,7 +6,9 @@ import com.melasoft.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 
 public class PricingStepDefinitions {
@@ -22,7 +24,9 @@ String urlOfWebSite;
 
         EasybillPage easybillPage = new EasybillPage();
         BrowserUtils.sleep(5);
-        easybillPage.getAcceptAllButton().click();
+        WebElement accepall=Driver.getDriver().findElement(By.xpath("//button[.='Accept all']"));
+        accepall.click();
+       // easybillPage.getAcceptAllButton().click();
         easybillPage.extractPricingDetails(urlOfWebSite);
     }
 
@@ -90,6 +94,7 @@ String urlOfWebSite;
     public void i_extract_getmyinvoices_pricing_details() {
    GetMyInvoicesPage getMyInvoicesPage =new GetMyInvoicesPage();
    getMyInvoicesPage.acceptAllCookies.click();
+   BrowserUtils.sleep(10);
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("arguments[0].click();", getMyInvoicesPage.preseMenu);
    getMyInvoicesPage.extractPricingDetails(urlOfWebSite);

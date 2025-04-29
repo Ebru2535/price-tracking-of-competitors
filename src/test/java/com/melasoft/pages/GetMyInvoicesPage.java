@@ -1,5 +1,6 @@
 package com.melasoft.pages;
 
+import com.melasoft.utilities.BrowserUtils;
 import com.melasoft.utilities.Driver;
 import com.melasoft.utilities.CsvUtil;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,46 +16,48 @@ public class GetMyInvoicesPage extends BasePage{
     @FindBy(xpath = "//button[@title='Accept all cookies']")
     public WebElement acceptAllCookies;
 
-    @FindBy(xpath = "//div[@data-id='d2a7cf6']//h4")
+    @FindBy(xpath = "//div[@data-id='2d232f45']//h4")
     public WebElement essential;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[1]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[8]")
     public WebElement essentialPrice;
 
     @FindBy(xpath = "(//div[@class='elementor-widget-container']//h4[.='Small'])[1]")
     public WebElement small;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[2]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[9]")
     public WebElement smallPrice;
 
     @FindBy(xpath = "(//div[@class='elementor-widget-container']//h4[.='Standard'])[1]")
     public WebElement standard;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[3]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[10]")
     public WebElement standardPrice;
 
     @FindBy(xpath = "(//h4[.='Professional'])[1]")
     public WebElement professional;
 
 
-    @FindBy(xpath = "(//span[@data-field-name='preis'])[4]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[11]")
     public WebElement professionalPrice;
 
     @FindBy(xpath = "(//h4[.='Enterprise'])[1]")
     public WebElement enterprise;
 
 
-    @FindBy(xpath = "(//span[@data-field-name='preis'])[5]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[12]")
     public WebElement enterprisePrice;
 
     @FindBy(xpath = "(//ul//li//a[.='Preise'])[4]")
     public WebElement preseMenu;
 
     public void extractPricingDetails(String url) {
+        BrowserUtils.refreshPage();
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+
 
 
         // Product types and their corresponding WebElements
