@@ -16,39 +16,39 @@ public class GetMyInvoicesPage extends BasePage{
     @FindBy(xpath = "//button[@title='Accept all cookies']")
     public WebElement acceptAllCookies;
 
-    @FindBy(xpath = "//div[@data-id='2d232f45']//h4")
+    @FindBy(xpath = "(//h4[.='Essential'])[1]")
     public WebElement essential;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[8]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[1]")
     public WebElement essentialPrice;
 
     @FindBy(xpath = "(//div[@class='elementor-widget-container']//h4[.='Small'])[1]")
     public WebElement small;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[9]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[2]")
     public WebElement smallPrice;
 
     @FindBy(xpath = "(//div[@class='elementor-widget-container']//h4[.='Standard'])[1]")
     public WebElement standard;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[10]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[3]")
     public WebElement standardPrice;
 
     @FindBy(xpath = "(//h4[.='Professional'])[1]")
     public WebElement professional;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[11]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[4]")
     public WebElement professionalPrice;
 
     @FindBy(xpath = "(//h4[.='Enterprise'])[1]")
     public WebElement enterprise;
 
 
-    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[12]")
+    @FindBy(xpath = "(//span[@data-fallback-field-name='preis'])[5]")
     public WebElement enterprisePrice;
 
     @FindBy(xpath = "(//ul//li//a[.='Preise'])[4]")

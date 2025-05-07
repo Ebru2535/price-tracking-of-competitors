@@ -12,22 +12,22 @@ import java.util.Map;
 
 public class SumUpPage extends BasePage{
 
-    @FindBy(xpath = "//p[@id='solo-lite']")
+    @FindBy(xpath = "//h4[@id='solo-lite']")
     public WebElement  soloLite;
 
-    @FindBy(xpath = "(//p[@id='solo-lite']//..//p//span)[2]")
+    @FindBy(xpath = "(//h4[@id='solo-lite']//..//p//span)[2]")
     public WebElement soloLitePrice;
 
-    @FindBy(xpath = "//p[@id='solo']")
+    @FindBy(xpath = "//h4[@id='solo']")
     public WebElement  solo;
 
-    @FindBy(xpath = "(//p[@id='solo']//..//p//span)[2]")
+    @FindBy(xpath = "(//h4[@id='solo']//..//p//span)[2]")
     public WebElement soloPrice;
 
-    @FindBy(xpath = "//p[@id='kassensystem-lite']")
+    @FindBy(xpath = "//h4[@id='kassensystem-lite']")
     public WebElement  kassensystenLite;
 
-    @FindBy(xpath = "(//p[@id='kassensystem-lite']//..//p//span)[2]")
+    @FindBy(xpath = "(//h4[@id='kassensystem-lite']//..//p//span)[2]")
     public WebElement kassensystenLitePrice;
 
 

@@ -39,5 +39,5 @@ Given I navigate to "https://www.lexoffice.de/preise/"
 When I extract lexoffice pricing details
 @getmyinvoices
 Scenario: Navigate to GetMyInvoices URL and retrieve pricing information
-Given I navigate to "https://www.getmyinvoices.com/de/"
+Given I navigate to "https://www.getmyinvoices.com/de/preise/"
 When I extract getmyinvoices pricing details
