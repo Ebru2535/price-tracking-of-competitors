@@ -56,6 +56,7 @@ public class GetMyInvoicesPage extends BasePage{
 
     public void extractPricingDetails(String url) {
         BrowserUtils.refreshPage();
+
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
 
@@ -78,7 +79,7 @@ public class GetMyInvoicesPage extends BasePage{
             if (elements != null) {
                 try {
 
-               ;
+
                     js.executeScript("arguments[0].scrollIntoView(true);", elements[0]);
 
                     String productName = elements[0].getText().trim();
@@ -101,12 +102,6 @@ public class GetMyInvoicesPage extends BasePage{
 
         CsvUtil.createCsvFile(pricingDetails);
     }
-
-
-
-
-
-
 
 
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BillomatPage extends BasePage{
+public class BillomatPage extends BasePage {
 
 
     @FindBy(id = "CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")
@@ -34,34 +34,38 @@ public class BillomatPage extends BasePage{
     @FindBy(xpath = "(//span[@class='price']//strong)[6]")
     public WebElement enterprisePrice;
 
-
-
-
     public void extractPricingDetails(String url) {
 
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
-        // Ordered product types and corresponding prices
         WebElement[] productTypes = {professional, business, enterprise};
         WebElement[] productPrices = {professionalPrice, businessPrice, enterprisePrice};
 
         Map<String, String> pricingDetails = new HashMap<>();
-        pricingDetails.put("url" , url);
+        pricingDetails.put("url", url);
 
         for (int i = 0; i < productTypes.length; i++) {
             WebElement productTypeElement = productTypes[i];
             WebElement productPriceElement = productPrices[i];
 
             if (productTypeElement != null && productPriceElement != null) {
-                // Scroll the element into view
-                //  js.executeScript("arguments[0].scrollIntoView(true);", productTypeElement);
+
+                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", productTypeElement);
 
                 String productName = productTypeElement.getText().trim();
                 String productPrice = productPriceElement.getText().trim();
-                productPrice=productPrice.substring(productPrice.indexOf(" "));
+
+                // Safe check for space character before using substring
+                int spaceIndex = productPrice.indexOf(" ");
+                if (spaceIndex != -1 && spaceIndex < productPrice.length() - 1) {
+                    productPrice = productPrice.substring(spaceIndex).trim();
+                } else {
+                    System.out.println("Space character not found, full price will be used: '" + productPrice + "'");
+                    productPrice = productPrice.trim(); // Or keep it as is
+                }
 
                 if (productName.isEmpty() || productPrice.isEmpty()) {
-                    System.out.println("Product or price information not found for: " + productName);
+                    System.out.println("Product or price information is missing: " + productName + " / " + productPrice);
                 } else {
                     System.out.println(productName + " PRICE: " + productPrice);
                     pricingDetails.put(productName, productPrice);
@@ -73,4 +77,8 @@ public class BillomatPage extends BasePage{
 
         CsvUtil.createCsvFile(pricingDetails);
     }
+
+
+
+
 }
