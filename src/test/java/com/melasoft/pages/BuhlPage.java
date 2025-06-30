@@ -24,34 +24,36 @@ public WebElement getAcceptAllButton() {
     return shadowRoot.findElement(By.cssSelector("[id='accept']"));
 }
 
-    @FindBy(xpath = "(//div[@class='plan'])[2]")
+    @FindBy(xpath = "//div[.='XS']")
     public WebElement xsProductType;
 
-    @FindBy(xpath = "(//div[@class='preis-wrap__discounted'])[2]")
+    @FindBy(xpath = "(//div[@data-discount='0']/./span)[1]")
     public WebElement xsPrice;
 
-    @FindBy(xpath = "(//div[@class='plan'])[3]")
+    @FindBy(xpath = "//div[.='S']")
     public WebElement sProductType;
 
-    @FindBy(xpath = "(//div[@class='preis-wrap__discounted'])[3]")
+    @FindBy(xpath = "(//div[@data-discount='0']/./span)[2]")
     public WebElement sPrice;
 
-    @FindBy(xpath = "(//div[@class='plan'])[4]")
+    @FindBy(xpath = "//div[.='M']")
     public WebElement mProductType;
 
-    @FindBy(xpath = "(//div[@class='preis-wrap__discounted'])[4]")
+    @FindBy(xpath = "(//div[@data-discount='0']/./span)[3]")
     public WebElement mPrice;
 
-    @FindBy(xpath = "(//div[@class='plan'])[5]")
+    @FindBy(xpath = "(//div[.='L'])[1]")
     public WebElement lProductType;
 
-    @FindBy(xpath = "(//div[@class='preis-wrap__discounted'])[5]")
+    @FindBy(xpath = "(//div[@data-discount='0']/./span)[4]")
     public WebElement lPrice;
-    @FindBy(xpath = "//ul//li[.='Free,XS']")
+
+    @FindBy(xpath = "//div[.='XS']")
     public WebElement freeXsHeader;
 
-    @FindBy(xpath = "//ul//li[.='S,M']")
+    @FindBy(xpath = "//div[.='S']")
     public WebElement smHeader;
+
     @FindBy(xpath = "//ul//li[.='L']")
     public WebElement lHeader;
 
@@ -116,20 +118,19 @@ public void extractPricingDetails(String url) {
             WebElement productTypeElement = productTypes[i];
             WebElement productPriceElement = productPrices[i];
 
-            // Son eleman için özel işlem
+
             if (i == length - 1) {
                 System.out.println("Processing last element at index: " + i);
             }
 
-            // Web elemanını görünür yapmak için scrollIntoView kullanıyoruz
+
             js.executeScript("arguments[0].scrollIntoView(true);", productPriceElement);
             wait.until(ExpectedConditions.visibilityOf(productTypeElement));
 
-            // Fiyatı ve ismi alırken getAttribute("textContent") kullanıyoruz
             String productName = productTypeElement.getText().trim();
-            String productPrice = productPriceElement.getAttribute("textContent").trim();  // textContent kullanımı
+            String productPrice = productPriceElement.getAttribute("textContent").trim();
 
-            // Debugging: Her fiyatı kontrol et
+
             System.out.println("Product Type: " + productName + " | Product Price: " + productPrice);
 
             if (productName.isEmpty() || productPrice.isEmpty()) {
@@ -144,7 +145,7 @@ public void extractPricingDetails(String url) {
         }
     }
 
-    // CSV dosyasını oluşturuyoruz
+
     CsvUtil.createCsvFile(pricingDetails);
 }
 
