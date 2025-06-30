@@ -54,6 +54,13 @@ public class GetMyInvoicesPage extends BasePage{
     @FindBy(xpath = "(//ul//li//a[.='Preise'])[4]")
     public WebElement preseMenu;
 
+    @FindBy (xpath = "(//h4[.='Advanced'])[1]")
+    public WebElement advanced;
+
+    @FindBy (xpath = "//span[@id='country_specific_content_685c450e3a3ac']")
+    public WebElement advancedPrice;
+
+
     public void extractPricingDetails(String url) {
         BrowserUtils.refreshPage();
 
@@ -68,6 +75,7 @@ public class GetMyInvoicesPage extends BasePage{
         productElements.put("Standard", new WebElement[]{standard, standardPrice});
         productElements.put("Professional", new WebElement[]{professional, professionalPrice});
         productElements.put("Enterprise", new WebElement[]{enterprise, enterprisePrice});
+        productElements.put("Advanced", new WebElement[]{advanced, advancedPrice});
 
         Map<String, String> pricingDetails = new HashMap<>();
         pricingDetails.put("url" , url);
