@@ -17,6 +17,7 @@ String urlOfWebSite;
     public void i_navigate_to(String url) {
         urlOfWebSite=url;
         Driver.getDriver().get(url);
+        System.out.println("Navigated the URL: " + url);
     }
 
     @When("^I extract easybill pricing details$")
@@ -54,6 +55,7 @@ String urlOfWebSite;
         BillomatPage billomatPage = new BillomatPage();
         BrowserUtils.sleep(2);
         billomatPage.shadowHost.click();
+        BrowserUtils.sleep(2);
         billomatPage.extractPricingDetails(urlOfWebSite);
     }
 
